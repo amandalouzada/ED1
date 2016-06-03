@@ -51,10 +51,22 @@ void inserir(lista *l, char * x){
 int main(){
     lista l;
     no * no;
-    char  nome[20];
+    char  nome[50];
+    FILE *arq;
+    int result;
+    char Str[50];
 
+    arq = fopen("arquivo.txt", "rt");
+
+    if (arq == NULL)
+    {
+        printf("Problemas na CRIACAO do arquivo\n");
+        return;
+    }
+    /*
     printf("Nome: " );
     scanf("%s",nome );
+    */
 
     iniciarLista(&l);
     inserir(&l,nome);
