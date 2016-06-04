@@ -51,29 +51,48 @@ void inserir(lista *l, char * x){
 int main(){
     lista l;
     no * no;
-    char  nome[50];
+    char  nome[50], nomeNo[50];
     FILE *arq;
-    int result;
-    char Str[50];
+    int i, resto, size;
+    int x;
+    char str[] = "amanda";
+
+
+    printf("Digite o numero de caracteres do indice: ");
+    scanf("%d", &i);
+
 
     arq = fopen("arquivo.txt", "rt");
 
     if (arq == NULL)
     {
         printf("Problemas na CRIACAO do arquivo\n");
-        return;
     }
-    /*
-    printf("Nome: " );
-    scanf("%s",nome );
-    */
+
+    while (!feof(arq))
+    {
+  	   if (fgets(nome, 50 ,arq)){
+         //RECEBE O TAMANHO DA PALAVRA
+          size = (strlen(nome)-1);
+        //RECEBE O RESTO DA DIVISAO
+          resto = size%i;
+          x=0;
+          do
+          {
+              strncpy(nomeNo, nome+x, i);
+              printf("Nome: %s\n", nomeNo );
+              x++;
+          } while(x<size-(i-resto));
+       }
+       printf("\n");
+    }
+    fclose(arq);
 
     iniciarLista(&l);
     inserir(&l,nome);
 
     no = getNo(nome);
 
-    printf("No nome: %s\n",no->valor);
 
 
     ///TODO code here...
